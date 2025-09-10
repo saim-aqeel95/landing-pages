@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "i18n:extract": "i18next --config i18next-parser.config.cjs",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
