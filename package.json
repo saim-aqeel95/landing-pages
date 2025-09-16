@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://<username>.github.io/<repo-name>",
+  "homepage": "https://saim-aqeel95.github.io/landing-pages/",
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
