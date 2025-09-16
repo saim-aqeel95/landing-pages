@@ -11,7 +11,7 @@ const AutoInsurance = lazy(() => import('./pages/AutoInsurance'));
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={"/landing-pages"}>
       <div className="min-h-screen bg-gray-50 font-sans text-gray-800 antialiased leading-relaxed">
         <style>{customStyles}</style>
         <Navbar />
