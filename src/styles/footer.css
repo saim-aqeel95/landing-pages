@@ -1,0 +1,212 @@
+/* Variables for easy color changes */
+:root {
+  --footer-bg-color: #060e20; /* Dark background */
+  --text-color: #ffffff;    /* White text */
+  --link-hover-color: #4a90e2; /* Light blue for hover */
+  --star-pattern-color: #1a253d; /* Subtle star/sparkle color */
+}
+
+/* --- Base Footer Container --- */
+.footer-container {
+  background-color: var(--footer-bg-color);
+  color: var(--text-color);
+  padding: 40px 20px;
+  /* Simulating the star background pattern */
+  /* background-image: radial-gradient(var(--star-pattern-color) 1px, transparent 0); */
+  background-size: 40px 40px;
+}
+
+/* --- Content Wrapper (Grid for Desktop) --- */
+.footer-content {
+  max-width: 1200px; /* Standard content width */
+  margin: 0 auto;
+  display: grid;
+  /* Define 4 columns for desktop */
+  grid-template-columns: 2.5fr 1.5fr 2fr 2fr; 
+  gap: 30px;
+}
+
+/* --- General Text/Link Styling --- */
+.column-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid transparent; /* To match the weight/feel of the image titles */
+}
+
+/* --- Column Styling --- */
+.footer-column {
+  padding: 10px 0;
+}
+
+/* 1. Company Info */
+.footer-logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.company-description {
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* 2. Useful Links */
+.useful-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.useful-links li {
+  margin-bottom: 10px;
+}
+.useful-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+.useful-links a:hover {
+  color: var(--link-hover-color);
+}
+.useful-links .icon {
+  margin-right: 10px;
+  font-size: 1.1em; /* For unicode icons */
+}
+
+/* 3. Official Info */
+.info-detail {
+  margin-bottom: 15px;
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+.info-detail a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.info-detail a:hover {
+  text-decoration: underline;
+}
+.official-info .icon {
+  margin-right: 8px;
+  font-size: 1.1em;
+}
+.hours-title {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+.hours-detail {
+  margin: 5px 0;
+}
+
+/* 4. Location Map */
+.location-map {
+  display: flex;
+  flex-direction: column;
+}
+.map-placeholder {
+  flex-grow: 1; /* Take up remaining vertical space */
+  background-color: #0b142b; /* Slightly lighter dark color for map area */
+  border-radius: 5px;
+  min-height: 180px; /* Ensure map has height */
+  /* Simulate the world map look from the image */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500"><path fill="#1a253d" d="M0 0h1000v500H0z"/><path fill="#060e20" d="M100 100a400 400 0 01800 0v300a400 400 0 01-800 0z"/><path fill="#1a253d" d="M200 250a10 10 0 1020-10 10 10 0 00-20 10z"/><path fill="#1a253d" d="M500 150c-20 0-40 20-40 40s20 40 40 40 40-20 40-40-20-40-40-40z"/><path fill="#1a253d" d="M750 350a30 30 0 1060 0 30 30 0 00-60 0z"/><path fill="#060e20" d="M500 250c-150 0-300-100-300-200h600c0 100-150 200-300 200z" opacity=".8"/></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.map-pin {
+  width: 10px;
+  height: 10px;
+  background-color: #4a90e2; /* Light blue pin */
+  border-radius: 50%;
+  position: absolute;
+  top: 30%; /* Approximate position for New York */
+  left: 30%; /* Approximate position for New York */
+  box-shadow: 0 0 5px 2px #4a90e2;
+}
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.social-link {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    color: #ffffff;
+}
+
+/* ----------------------------------------------------------------- */
+/* --- Mobile Responsiveness (Screen size < 768px) --- */
+/* ----------------------------------------------------------------- */
+@media (max-width: 768px) {
+  
+  .footer-content {
+    /* Change from grid to a column layout (stacking columns) */
+    display: flex; 
+    flex-direction: column;
+    gap: 0; /* Remove gap */
+  }
+
+  /* Add space between stacked columns on mobile */
+  .footer-column {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+  }
+  
+  .footer-column:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  
+  /* Company info moves to the top */
+  .company-info {
+    order: 0; /* Ensures it's the first element */
+  }
+  
+  /* Map moves toward the bottom, just above Official Info */
+  .location-map {
+    order: 3; 
+  }
+  
+  /* Official info is just before the map */
+  .official-info {
+    order: 2;
+  }
+  
+  /* Links are second */
+  .useful-links {
+    order: 1; 
+  }
+  
+  /* Reduce padding on mobile */
+  .footer-container {
+    padding: 30px 15px;
+  }
+
+  .map-placeholder {
+    min-height: 150px; /* Slightly smaller map on mobile */
+  }
+}
+
+/* Small adjustments for tablet sizes (optional) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-content {
+    /* Adjust grid columns for slightly narrower screens */
+    grid-template-columns: 2fr 1.5fr 1.5fr 2fr; 
+    gap: 20px;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sun, Leaf, DollarSign, BatteryCharging, ChevronRight, CheckCircle, Lightbulb, Phone, X, Calculator, Smile } from 'lucide-react';
+import SolarQuotation from '../components/SolarQuotation';
 import { motion } from 'framer-motion';
 import BannerImg from "../assets/img/banner.jpg";
 
@@ -85,6 +86,55 @@ const QuoteFormModal = ({ isOpen, onClose }) => {
   );
 };
 
+// const SolarQuotModal = ({ isOpen, onClose }) => {
+//   if (!isOpen) return null;
+
+//   return (
+//     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50">
+//       <motion.div
+//         initial={{ opacity: 0, scale: 0.9 }}
+//         animate={{ opacity: 1, scale: 1 }}
+//         exit={{ opacity: 0, scale: 0.9 }}
+//         transition={{ duration: 0.3 }}
+//         className="bg-white p-8 rounded-3xl shadow-2xl max-w-lg w-full relative"
+//       >
+//         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+//           <X size={24} />
+//         </button>
+//         <h3 className="text-2xl font-bold text-center text-gray-900 mb-2 font-quicksand">Get Your Free Quote</h3>
+//         <p className="text-center text-gray-600 mb-6">Fill out the form below and one of our experts will contact you shortly.</p>
+//         <SolarQuotation />
+//       </motion.div>
+//     </div>
+//   );
+// };
+const SolarQuotModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-0 z-50">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        className="bg-white p-0 rounded-xl shadow-2xl max-w-lg w-full relative max-h-[90vh] flex flex-col"
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <X size={24} />
+        </button>
+        
+        <div className="overflow-y-auto flex-1">
+          <SolarQuotation />
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 // Solar Savings Calculator Component
 const SolarSavingsCalculator = () => {
   const [bill, setBill] = useState('');
@@ -143,6 +193,7 @@ const SolarSavingsCalculator = () => {
 
 const Solar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSolarModalOpen, setIsSolarModalOpen]= useState(false)
 
   // Animation variants
   const slideInVariant = {
@@ -172,7 +223,7 @@ const Solar = () => {
             </motion.div>
             <motion.div variants={slideInVariant} initial="initial" whileInView="whileInView" transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}>
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setIsSolarModalOpen(true)}
                 className="mt-8 px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full shadow-lg hover:bg-yellow-400 transform hover:scale-105 transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-yellow-300 active:bg-yellow-600 pulse-light"
               >
                 <Phone size={20} className="inline-block mr-2" />
@@ -351,16 +402,17 @@ const Solar = () => {
         </div>
 
         {/* Footer */}
-        <footer className="bg-gray-800 text-gray-300 py-8 text-center">
+        {/* <footer className="bg-gray-800 text-gray-300 py-8 text-center">
           <div className="container mx-auto px-4">
             <p>&copy; {new Date().getFullYear()} Solar Solutions. All Rights Reserved.</p>
             <p className="mt-2 text-sm">
               <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a> | <a href="#" className="hover:text-white transition-colors duration-200">Terms of Service</a>
             </p>
           </div>
-        </footer>
+        </footer> */}
       </div>
       <QuoteFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <SolarQuotModal isOpen={isSolarModalOpen} onClose={() => setIsSolarModalOpen(false)} />
     </div>
   );
 };
