@@ -60,4 +60,23 @@ export const customStyles = `
     background-color: #00042e;
     opacity: .6;
   }
+  
+  /* Custom Scrollbar Styling (Redesign) */
+  .custom-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: gray; /* Primary Blue */
+    border-radius: 10px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: gray; /* Darker Blue on hover */
+  }
 `;

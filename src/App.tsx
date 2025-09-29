@@ -7,6 +7,7 @@ import { customStyles } from './styles';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
+import MedicarePage from './pages/MedicarePage';
 const Solar = lazy(() => import('./pages/Solar'));
 const HomeService = lazy(() => import('./pages/HomeService'));
 const AutoInsurance = lazy(() => import('./pages/AutoInsurance'));
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/solar" element={<Suspense fallback={<div>Loading...</div>}><Solar /></Suspense>} />
           <Route path="/home-services" element={<Suspense fallback={<div>Loading...</div>}><HomeService /></Suspense>} />
           <Route path="/auto-insurance" element={<Suspense fallback={<div>Loading...</div>}>< AutoInsurance/></Suspense>} />
+          <Route path="/medicare" element={<Suspense fallback={<div>Loading...</div>}>< MedicarePage/></Suspense>} />
+
         </Routes>
         <Footer/>
         {/* </Suspense> */}

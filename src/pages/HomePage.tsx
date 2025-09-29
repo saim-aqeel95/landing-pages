@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Sun,
   Leaf,
@@ -23,6 +23,7 @@ import {
 import SolarQuotation from "../components/SolarQuotation";
 import { motion } from "framer-motion";
 import BannerImg from "../assets/img/banner.jpg";
+import { useNavigate } from "react-router-dom";
 
 // Custom CSS for fonts. Framer Motion handles the animations.
 const customStyles = `
@@ -241,6 +242,12 @@ const SolarSavingsCalculator = () => {
 const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSolarModalOpen, setIsSolarModalOpen] = useState(false);
+  const servicesRef = useRef(null);
+  const navigate = useNavigate()
+
+  const scrollToServices = () => {
+    servicesRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Animation variants
   const slideInVariant = {
@@ -289,27 +296,42 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <div className="flex flex-col sm:flex-row justify-center items-center mt-8 gap-4">
-                <button
+                {/* <button
                   onClick={() => setIsModalOpen(true)}
                   className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-full shadow-lg hover:bg-blue-700 transform hover:scale-105 transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-blue-300 active:bg-blue-800 pulse-animation"
                 >
                   <Phone size={20} className="inline-block mr-2" />
                   Get a Free Quote
-                </button>
-                <a
-                  href="#services"
+                </button> */}
+                <button
+                  // href="#services"
+                  onClick={scrollToServices}
                   className="w-full sm:w-auto px-8 py-4 bg-gray-200 text-gray-800 font-bold rounded-full shadow-lg hover:bg-white transform hover:scale-105 transition-transform duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-gray-300 active:bg-white flex items-center justify-center"
                 >
                   Explore Services
                   <ArrowRight size={20} className="inline-block ml-2" />
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
         </div>
 
+        <div id="about" className="bg-gray-100 py-16 px-4">
+        <div className="container mx-auto text-center">
+          <motion.div variants={slideInVariant} initial="initial" whileInView="whileInView" transition={{ duration: 0.6 }} viewport={{ once: true }}>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 font-quicksand">
+              About Us
+            </h2>
+            <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
+              We started with a simple goal: to simplify essential services and make high-quality protection accessible to everyone. Our commitment goes beyond policies and paperwork—it's about building lifelong trust.
+            </p>
+          </motion.div>
+
+        </div>
+      </div>
+
         {/* Services Section */}
-        <div id="services" className="container mx-auto px-4 py-16 pt-24">
+        <div ref={servicesRef} className="container mx-auto px-4 py-16 pt-24">
           <motion.div
             variants={slideInVariant}
             initial="initial"
@@ -340,7 +362,7 @@ const HomePage = () => {
                   covers end-of-life expenses.
                 </p>
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  // onClick={() => setIsModalOpen(true)}
                   className="mt-4 inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors"
                 >
                   Learn More <ArrowRight size={16} className="ml-1" />
@@ -368,7 +390,7 @@ const HomePage = () => {
                   find the right coverage for you.
                 </p>
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => navigate("/medicare")}
                   className="mt-4 inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition-colors"
                 >
                   Learn More <ArrowRight size={16} className="ml-1" />
@@ -393,7 +415,7 @@ const HomePage = () => {
                   our flexible and affordable policies.
                 </p>
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => navigate("/auto-insurance")}
                   className="mt-4 inline-flex items-center text-orange-600 font-semibold hover:text-orange-800 transition-colors"
                 >
                   Learn More <ArrowRight size={16} className="ml-1" />
@@ -418,7 +440,7 @@ const HomePage = () => {
                   your home running smoothly.
                 </p>
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => navigate("/home-services")}
                   className="mt-4 inline-flex items-center text-purple-600 font-semibold hover:text-purple-800 transition-colors"
                 >
                   Learn More <ArrowRight size={16} className="ml-1" />
@@ -441,7 +463,7 @@ const HomePage = () => {
                   utility bills with our solar solutions.
                 </p>
                 <button
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => navigate("/solar")}
                   className="mt-4 inline-flex items-center text-yellow-600 font-semibold hover:text-yellow-800 transition-colors"
                 >
                   Learn More <ArrowRight size={16} className="ml-1" />
